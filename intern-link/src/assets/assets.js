@@ -75,26 +75,26 @@ export const assets = {
 export const JobCategories = [
     "Programming",
     "Data Science",
-    "Designing",
+    "Finance",
     "Networking",
-    "Management",
+    "Hospitality",
     "Marketing",
     "Cybersecurity",
 ]
 
 export const JobLocations = [
-    "Bangalore",
-    "Washington",
-    "Hyderabad",
-    "Mumbai",
-    "California",
-    "Chennai",
-    "New York"
+    "Nairobi",
+    "Mombasa",
+    "Eldoret",
+    "Kisumu",
+    "Nakuru",
+    "Naivasha",
+    "Kiambu"
 ]
 
 // Sample data for Manage Jobs Page
-export const manageJobsData = [
-    { _id: 1, title: "Full Stack Developer", date: 1729102298497, location: "Bangalore", applicants: 20 },
+export const manageInternshipData = [
+    { _id: 1, title: "Full Stack Developer", date: 1729102298497, location: "Kisumu", applicants: 20 },
     { _id: 2, title: "Data Scientist", date: 1729102298497, location: "San Francisco", applicants: 15 },
     { _id: 3, title: "Marketing Manager", date: 1729102298497, location: "London", applicants: 2 },
     { _id: 4, title: "UI/UX Designer", date: 1729102298497, location: "Dubai", applicants: 25 }
@@ -145,20 +145,20 @@ export const jobsApplied = [
 ];
 
 export const viewApplicationsPageData = [
-    { _id: 1, name: "Richard Sanford", jobTitle: "Full Stack Developer", location: "Bangalore", imgSrc: profile_img },
+    { _id: 1, name: "Richard Sanford", jobTitle: "Full Stack Developer", location: "Kisumu", imgSrc: profile_img },
     { _id: 2, name: "Enrique Murphy", jobTitle: "Data Scientist", location: "San Francisco", imgSrc: profile_img },
     { _id: 3, name: "Alison Powell", jobTitle: "Marketing Manager", location: "London", imgSrc: profile_img },
     { _id: 4, name: "Richard Sanford", jobTitle: "UI/UX Designer", location: "Dubai", imgSrc: profile_img },
-    { _id: 5, name: "Enrique Murphy", jobTitle: "Full Stack Developer", location: "Hyderabad", imgSrc: profile_img },
+    { _id: 5, name: "Enrique Murphy", jobTitle: "Full Stack Developer", location: "Eldoret", imgSrc: profile_img },
     { _id: 6, name: "Alison Powell", jobTitle: "Data Scientist", location: "New Delhi", imgSrc: profile_img },
-    { _id: 7, name: "Richard Sanford", jobTitle: "Marketing Manager", location: "Chennai", imgSrc: profile_img },
+    { _id: 7, name: "Richard Sanford", jobTitle: "Marketing Manager", location: "Naivasha", imgSrc: profile_img },
 ];
 
-export const jobsData = [
+export const internshipData = [
     {
         _id: '1',
         title: "Full Stack Developer",
-        location: "California",
+        location: "Kiambu",
         level: "Senior Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -184,14 +184,14 @@ export const jobsData = [
             <li>Strong understanding of web security and performance optimization.</li>
             <li>Ability to work in an Agile environment.</li>
         </ol>`,
-        salary: 82000,
+        stipend: 82000,
         date: 1729681667114,
         category: "Programming",
     },
     {
         _id: '2',
         title: "Data Scientist",
-        location: "New York",
+        location: "Nairobi",
         level: "Intermediate Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -217,14 +217,14 @@ export const jobsData = [
             <li>Familiarity with machine learning techniques and algorithms.</li>
             <li>Excellent problem-solving and critical-thinking skills.</li>
         </ol>`,
-        salary: 72000,
+        stipend: 72000,
         date: 1729681667114,
         category: "Data Science",
     },
     {
         _id: '3',
         title: "UI/UX Designer",
-        location: "Bangalore",
+        location: "Kisumu",
         level: "Beginner Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -250,14 +250,14 @@ export const jobsData = [
             <li>Excellent communication and teamwork skills.</li>
             <li>Creative problem-solving abilities.</li>
         </ol>`,
-        salary: 61000,
+        stipend: 61000,
         date: 1729681667114,
         category: "Designing",
     },
     {
         _id: '4',
         title: "DevOps Engineer",
-        location: "Washington",
+        location: "Nakuru",
         level: "Senior Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -283,14 +283,14 @@ export const jobsData = [
             <li>Familiarity with containerization technologies (e.g., Docker, Kubernetes).</li>
             <li>Excellent troubleshooting and analytical skills.</li>
         </ol>`,
-        salary: 53000,
+        stipend: 53000,
         date: 1729681667114,
         category: "Programming",
     },
     {
         _id: '5',
         title: "Software Engineer",
-        location: "Hyderabad",
+        location: "Mombasa",
         level: "Intermediate Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -316,14 +316,14 @@ export const jobsData = [
             <li>Familiarity with version control systems (e.g., Git).</li>
             <li>Excellent communication and teamwork abilities.</li>
         </ol>`,
-        salary: 91000,
+        stipend: 91000,
         date: 1729681667114,
         category: "Programming",
     },
     {
         _id: '6',
         title: "Network Engineer",
-        location: "Bangalore",
+        location: "Kisumu",
         level: "Senior Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -349,14 +349,14 @@ export const jobsData = [
             <li>Excellent communication and teamwork abilities.</li>
             <li>Relevant certifications (e.g., CCNA, CCNP) are a plus.</li>
         </ol>`,
-        salary: 77000,
+        stipend: 77000,
         date: 1729681667114,
         category: "Networking",
     },
     {
         _id: '7',
         title: "Project Manager",
-        location: "Bangalore",
+        location: "Kisumu",
         level: "Senior Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -382,14 +382,14 @@ export const jobsData = [
             <li>Excellent communication and interpersonal abilities.</li>
             <li>Certification in project management (e.g., PMP, Scrum Master) is preferred.</li>
         </ol>`,
-        salary: 60000,
+        stipend: 60000,
         date: 1729681667114,
         category: "Management",
     },
     {
         _id: '8',
         title: "Mobile App Developer",
-        location: "Hyderabad",
+        location: "Mombasa",
         level: "Intermediate Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -415,14 +415,14 @@ export const jobsData = [
             <li>Excellent problem-solving skills and attention to detail.</li>
             <li>Familiarity with version control systems (e.g., Git).</li>
         </ol>`,
-        salary: 112000,
+        stipend: 112000,
         date: 1729681667114,
         category: "Programming",
     },
     {
         _id: '9',
         title: "Cloud Architect",
-        location: "Hyderabad",
+        location: "Eldoret",
         level: "Senior Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -448,14 +448,14 @@ export const jobsData = [
             <li>Excellent analytical and problem-solving skills.</li>
             <li>Relevant certifications (e.g., AWS Certified Solutions Architect) are preferred.</li>
         </ol>`,
-        salary: 96000,
+        stipend: 96000,
         date: 1729681667114,
         category: "Programming",
     },
     {
         _id: '10',
         title: "Technical Writer",
-        location: "Mumbai",
+        location: "Nairobi",
         level: "Intermediate Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -481,14 +481,14 @@ export const jobsData = [
             <li>Strong communication and collaboration abilities.</li>
             <li>Attention to detail and a commitment to quality.</li>
         </ol>`,
-        salary: 72000,
+        stipend: 72000,
         date: 1729681667114,
         category: "Marketing",
     },
     {
         _id: '11',
         title: "Cybersecurity Analyst",
-        location: "Mumbai",
+        location: "Nairobi",
         level: "Intermediate Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -514,14 +514,14 @@ export const jobsData = [
             <li>Excellent problem-solving and analytical skills.</li>
             <li>Relevant certifications (e.g., CISSP, CEH) are a plus.</li>
         </ol>`,
-        salary: 62000,
+        stipend: 62000,
         date: 1729681667114,
         category: "Cybersecurity",
     },
     {
         _id: '12',
         title: "Business Analyst",
-        location: "Mumbai",
+        location: "Nairobi",
         level: "Intermediate Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -547,14 +547,14 @@ export const jobsData = [
             <li>Experience with data analysis and reporting.</li>
             <li>Familiarity with Agile methodologies is a plus.</li>
         </ol>`,
-        salary: 68000,
+        stipend: 68000,
         date: 1729681667114,
         category: "Management",
     },
     {
         _id: '13',
         title: "Marketing Specialist",
-        location: "Chennai",
+        location: "Naivasha",
         level: "Beginner Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -580,14 +580,14 @@ export const jobsData = [
             <li>Creative thinking and problem-solving abilities.</li>
             <li>Willingness to learn and adapt in a fast-paced environment.</li>
         </ol>`,
-        salary: 77000,
+        stipend: 77000,
         date: 1729681667114,
         category: "Marketing",
     },
     {
         _id: '14',
         title: "Data Scientist",
-        location: "California",
+        location: "Nairobi",
         level: "Senior Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -613,14 +613,14 @@ export const jobsData = [
             <li>Excellent problem-solving skills and attention to detail.</li>
             <li>Ability to communicate complex concepts to non-technical audiences.</li>
         </ol>`,
-        salary: 65000,
+        stipend: 65000,
         date: 1729681667114,
         category: "Data Science",
     },
     {
         _id: '15',
         title: "UX/UI Designer",
-        location: "Hyderabad",
+        location: "Kisumu",
         level: "Intermediate Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -646,14 +646,14 @@ export const jobsData = [
             <li>Excellent communication skills and ability to work collaboratively.</li>
             <li>A portfolio showcasing relevant design projects is required.</li>
         </ol>`,
-        salary: 64000,
+        stipend: 64000,
         date: 1729681667114,
         category: "Design",
     },
     {
         _id: '16',
         title: "DevOps Engineer",
-        location: "Bangalore",
+        location: "Kisumu",
         level: "Senior Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -679,14 +679,14 @@ export const jobsData = [
             <li>Excellent troubleshooting and problem-solving skills.</li>
             <li>Relevant certifications (e.g., AWS Certified DevOps Engineer) are a plus.</li>
         </ol>`,
-        salary: 74000,
+        stipend: 74000,
         date: 1729681667114,
         category: "Programming",
     },
     {
         _id: '17',
         title: "Sales Manager",
-        location: "New York",
+        location: "Nairobi",
         level: "Senior Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -712,14 +712,14 @@ export const jobsData = [
             <li>Experience with CRM software (e.g., Salesforce).</li>
             <li>A results-oriented mindset with a focus on meeting targets.</li>
         </ol>`,
-        salary: 59000,
+        stipend: 59000,
         date: 1729681667114,
         category: "Marketing",
     },
     {
         _id: '18',
         title: "Human Resources Specialist",
-        location: "Washington",
+        location: "Nakuru",
         level: "Intermediate Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -745,14 +745,14 @@ export const jobsData = [
             <li>Ability to maintain confidentiality and handle sensitive information.</li>
             <li>Attention to detail and strong organizational skills.</li>
         </ol>`,
-        salary: 89000,
+        stipend: 89000,
         date: 1729681667114,
         category: "Management",
     },
     {
         _id: '19',
         title: "Content Marketing Manager",
-        location: "Mumbai",
+        location: "Nairobi",
         level: "Senior Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -778,14 +778,14 @@ export const jobsData = [
             <li>Excellent analytical skills and ability to interpret data.</li>
             <li>Strong leadership and project management skills.</li>
         </ol>`,
-        salary: 99000,
+        stipend: 99000,
         date: 1729681667114,
         category: "Marketing",
     },
     {
         _id: '20',
         title: "Graphic Designer",
-        location: "Chennai",
+        location: "Naivasha",
         level: "Intermediate Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -811,14 +811,14 @@ export const jobsData = [
             <li>Excellent communication and collaboration skills.</li>
             <li>A portfolio showcasing relevant design work is required.</li>
         </ol>`,
-        salary: 91000,
+        stipend: 91000,
         date: 1729681667114,
         category: "Design",
     },
     {
         _id: '21',
         title: "Software Tester",
-        location: "Chennai",
+        location: "Naivasha",
         level: "Intermediate Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -844,14 +844,14 @@ export const jobsData = [
             <li>Excellent attention to detail and ability to work under tight deadlines.</li>
             <li>Good communication skills to articulate testing outcomes and challenges.</li>
         </ol>`,
-        salary: 123000,
+        stipend: 123000,
         date: 1729681667114,
         category: "Programming",
     },
     {
         _id: '22',
         title: "Network Security Engineer",
-        location: "Bangalore",
+        location: "Kisumu",
         level: "Senior Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -877,14 +877,14 @@ export const jobsData = [
             <li>Excellent analytical and troubleshooting skills.</li>
             <li>Strong communication skills to work with technical and non-technical teams.</li>
         </ol>`,
-        salary: 87000,
+        stipend: 87000,
         date: 1729681667114,
         category: "Cybersecurity",
     },
     {
         _id: '23',
         title: "Cloud Engineer",
-        location: "Hyderabad",
+        location: "Kisumu",
         level: "Intermediate Level",
         companyId: {
             "_id": "670e4d25ca9fda8f1bf359b9",
@@ -910,7 +910,7 @@ export const jobsData = [
             <li>Experience with container orchestration tools like Kubernetes.</li>
             <li>Good problem-solving skills and attention to detail.</li>
         </ol>`,
-        salary: 102000,
+        stipend: 102000,
         date: 1729681667114,
         category: "Programming",
     }

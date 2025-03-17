@@ -1,11 +1,11 @@
 import React, { useContext, useRef } from 'react'
 import { assets } from '../assets/assets'
 import App from '../App'
-import { AppContextProvider } from '../context/AppContext'
+import { AppContext } from '../context/AppContext'
 
 const Hero = () => {
 
-    const {setSearchFilter,setIsSearched} = useContext(AppContextProvider)
+    const {setSearchFilter ,setIsSearched} =useContext(AppContext)
     const titleRef = useRef(null)
     const locationRef = useRef(null)
     const onSearch =() =>{
