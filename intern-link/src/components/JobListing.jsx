@@ -113,7 +113,9 @@ const JobListing = () => {
                     <InternshipCard key={index} internship={internship}/>
                 ))}
             </div>
-            {internships.length > 0 &&(
+        </section>
+        {/*Pagination*/}
+        {internships.length > 0 &&(
             <div className='flex items-center justify-center space-x-2 mt-10'>
                 <a href="#intern-list"><img onClick={()=> setCurrentPage(Math.max(currentPage-1))} src={assets.left_arrow_icon} alt="" /></a>
                 {Array.from({length:Math.ceil(internships.length/6)}).map((__,index)=>(
@@ -126,9 +128,6 @@ const JobListing = () => {
                 </a>
             </div>
         )}
-        </section>
-        {/*Pagination*/}
-        
     </div>
   )
 }
