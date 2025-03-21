@@ -13,23 +13,24 @@ const JobListing = () => {
     const [filteredInternships, setFilteredInternships] = useState(internships)
     const handleCategoryChange = (category) =>{
         setSelectedCategories(
-            prev => prev.includes(category) ?prev.filter (c => c !== category) : [...prev,category]
+            prev => prev.includes(category) ? prev.filter (c => c !== category) : [...prev,category]
         )
     }
     const handleLocationChange = (location) =>{
         setSelectedLocations(
-            prev => prev.includes(location) ?prev.filter (c => c !== location) : [...prev,location]
+            prev => prev.includes(location) ? prev.filter (c => c !== location) : [...prev,location]
         )
     }
 
+
     useEffect(() =>{
-        const matchesCategory = internships => selectedCategories.length ===0 || selectedCategories.includes(internships.category)
-        const matchesLocation = internships => selectedLocations.length === 0 || selectedLocations.includes(internships.location)
-        const matchesTitle = internships => searchFilter.title === "" || internships.title.toLowerCase().incudes(searchFilter.title.toLowerCase())
-        const matchesSearchLocation = internships => searchFilter.location ==="" || internship.title.toLowerCase().includes(searchFilter.location.toLowerCase())
+        const matchesCategory = internship => selectedCategories.length ===0 || selectedCategories.includes(internship.category)
+        const matchesLocation = internship => selectedLocations.length === 0 || selectedLocations.includes(internship.location)
+        const matchesTitle = internship => searchFilter.title === "" || internship.title.toLowerCase().includes(searchFilter.title.toLowerCase())
+        const matchesSearchLocation = internship => searchFilter.location ==="" || internship.location.toLowerCase().includes(searchFilter.location.toLowerCase())
 
         const newFilteredInternships = internships.slice().reverse().filter(
-            internships => matchesCategory(internships) && matchesLocation(internships) && matchesSearchLocation(internships) && matchesTitle(internships)
+            internship => matchesCategory(internship) && matchesLocation(internship) && matchesSearchLocation(internship) && matchesTitle(internship)
         )
         setFilteredInternships(newFilteredInternships)
         setCurrentPage(1)
@@ -74,7 +75,11 @@ const JobListing = () => {
                         {
                             JobCategories.map((category,index)=>(
                                 <li className='flex gap-3 items-center' key={index}>
-                                    <input className='scale-125' type="checkbox"  />
+                                    <input 
+                                    className='scale-125' 
+                                    type="checkbox" 
+                                    onChange={()=> handleCategoryChange(category)} 
+                                    checked={selectedCategories.includes(category)}/>
                                     {category}
                                 </li>
                             ))
@@ -88,7 +93,9 @@ const JobListing = () => {
                         {
                             JobLocations.map((location,index)=>(
                                 <li className='flex gap-3 items-center' key={index}>
-                                    <input className='scale-125' type="checkbox"  />
+                                    <input className='scale-125' type="checkbox"
+                                    onChange={()=> handleLocationChange(location)} 
+                                    checked={selectedLocations.includes(location)}  />
                                     {location}
                                 </li>
                             ))
@@ -112,22 +119,24 @@ const JobListing = () => {
                 {filteredInternships.slice((currentPage-1)*6,currentPage*6).map((internship,index) =>(
                     <InternshipCard key={index} internship={internship}/>
                 ))}
-            </div>
-        </section>
-        {/*Pagination*/}
-        {internships.length > 0 &&(
+            </div> 
+            {/*Pagination */}
+            {filteredInternships.length > 0 &&(
             <div className='flex items-center justify-center space-x-2 mt-10'>
                 <a href="#intern-list"><img onClick={()=> setCurrentPage(Math.max(currentPage-1))} src={assets.left_arrow_icon} alt="" /></a>
-                {Array.from({length:Math.ceil(internships.length/6)}).map((__,index)=>(
-                    <a href="#intern-list">
+                {Array.from({length:Math.ceil(filteredInternships.length/6)}).map((__,index)=>(
+                    <a key={index} href="#intern-list">
                         <button onClick={()=> setCurrentPage(index+1)} className={`w-10 h-10 flex items-center justify-center border border-gray-300 rounded ${currentPage === index + 1 ? 'bg-blue-100 text-blue-500' : 'text-gray-500'}`}> {index+1}</button>
                     </a>
                 ))}
                 <a href="#intern-list">
-                    <img onClick={()=> setCurrentPage(Math.min(currentPage+1,Math.ceil(internships.length/6)))} src={assets.right_arrow_icon} alt="" srcset="" />
+                    <img onClick={()=> setCurrentPage(Math.min(currentPage+1,Math.ceil(filteredInternships.length/6)))} src={assets.right_arrow_icon} alt="" srcset="" />
                 </a>
             </div>
         )}
+        </section>
+        
+       
     </div>
   )
 }
