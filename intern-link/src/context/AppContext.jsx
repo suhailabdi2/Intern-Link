@@ -11,6 +11,7 @@ export const AppContextProvider = (props) => {
     });
     const [isSearched,setIsSearched] = useState(true);
     const [internships, setInternships] = useState([])
+    const [showRecruiterLogin,setShowRecruiterLogin] = useState(false)
 //Function to fetch internships
     const fetchinternships = async () =>{
         setInternships(internshipData)
@@ -22,7 +23,8 @@ export const AppContextProvider = (props) => {
     const value = {
        searchFilter,setSearchFilter,
        isSearched,setIsSearched,
-       internships,setInternships
+       internships,setInternships,
+       showRecruiterLogin,setShowRecruiterLogin
     };
     return (<AppContext.Provider value = {value}>
         {props.children}

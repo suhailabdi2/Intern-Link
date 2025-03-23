@@ -101,11 +101,11 @@ export const manageInternshipData = [
 ];
 
 // Sample data for Profile Page
-export const jobsApplied = [
+export const internshipsApplied = [
     {
         company: 'Amazon',
         title: 'Full Stack Developer',
-        location: 'Bangalore',
+        location: 'Kisumu',
         date: '22 Aug, 2024',
         status: 'Pending',
         logo: company_icon,
@@ -113,7 +113,7 @@ export const jobsApplied = [
     {
         company: 'Meta',
         title: 'Data Scientist',
-        location: 'San Francisco',
+        location: 'Nairobi',
         date: '22 Aug, 2024',
         status: 'Rejected',
         logo: company_icon,
@@ -121,7 +121,7 @@ export const jobsApplied = [
     {
         company: 'Google',
         title: 'Marketing Manager',
-        location: 'London',
+        location: 'Eldoret',
         date: '25 Sep, 2024',
         status: 'Accepted',
         logo: company_icon,
@@ -129,7 +129,7 @@ export const jobsApplied = [
     {
         company: 'Qualcomm',
         title: 'UI/UX Designer',
-        location: 'Dubai',
+        location: 'Mombasa',
         date: '15 Oct, 2024',
         status: 'Pending',
         logo: company_icon,
@@ -137,7 +137,7 @@ export const jobsApplied = [
     {
         company: 'Microsoft',
         title: 'Full Stack Developer',
-        location: 'Hyderabad',
+        location: 'Kiambu',
         date: '25 Sep, 2024',
         status: 'Accepted',
         logo: company_icon,
