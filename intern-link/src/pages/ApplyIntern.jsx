@@ -9,7 +9,7 @@ import InternshipCard from '../components/InternshipCard'
 
 const ApplyIntern = () => {
   const {id} = useParams()
-
+  
   const [internshipData, setInternshipData] = useState(null)
   const { internships} = useContext(AppContext)
   const fetchInternship = async () =>{
@@ -52,7 +52,7 @@ const ApplyIntern = () => {
           </div>
         </div>
       </div>
-      <div className=' flex flex-col lg:flex-row justify-between items-start'>
+      <div className='gap-10 lg:gap-16 flex flex-col lg:flex-row justify-between items-start'>
         <div className='w-full lg:w-2/3 '>
           <h2 className='font-bold text-2xl mb-4' >Tasks</h2>
           <div className='mb-4'  dangerouslySetInnerHTML={{__html:internshipData.description}}></div>
@@ -60,8 +60,8 @@ const ApplyIntern = () => {
         </div>
         <div>
           {/* Right side */}
-          <div className='w-full lg:w-1/3 mt-8 lg:mt-0  space-y-4'>
-            <h2>More internships from {internshipData.companyId.name}</h2>
+          <div className='w-full lg:w-2/5 mt-8 lg:mt-0 shadow-md space-y-4 ml-auto'>
+            <h2 className='mb-4'>More internships from {internshipData.companyId.name}</h2>
             {internships.filter(internship => internship._id !== internshipData._id && internship.companyId._id ===internshipData.companyId._id).filter(internship => true).slice(0,3).map((internship,index)=><InternshipCard key={index} internship={internship} />)}
           </div>
 

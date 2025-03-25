@@ -1,7 +1,7 @@
 import React from 'react'
 import NavBar from '../components/NavBar'
 import Hero from '../components/Hero'
-import JobListing from '../components/JobListing'
+import InternshipListing from '../components/InternshipListing'
 
 
 const Home = () => {
@@ -9,7 +9,7 @@ const Home = () => {
     <div>
         <NavBar />
         <Hero />
-        <JobListing/>
+        <InternshipListing/>
     </div>
   )
 }

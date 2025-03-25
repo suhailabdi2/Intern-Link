@@ -3,6 +3,7 @@ import logo from '../assets/logo.svg'
 import { useClerk, UserButton,useUser } from '@clerk/clerk-react'
 import { Link, useNavigate } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
+import { assets } from '../assets/assets'
 
 const NavBar = () => {
     const {openSignIn} = useClerk()
@@ -15,7 +16,7 @@ const NavBar = () => {
   return (
     <div className='shadow py-4'>
         <div className='container px-4 2x1:px-20 mx-auto flex justify-between items-center'>
-            <img onClick={() => navigate('/')} className='cursor-pointer'  src ={logo} alt="logo" />
+            <img onClick={() => navigate('/')} className='cursor-pointer w-24 h-16'  src ={assets.new_logo} alt="logo" />
             {
                 user?
                 <div className='flex items-center gap-3'>

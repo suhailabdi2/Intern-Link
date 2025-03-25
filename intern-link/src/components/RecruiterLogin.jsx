@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { assets } from '../assets/assets'
+import { AppContext } from '../context/AppContext'
 
 const RecruiterLogin = () => {
   const [state,setState] = useState('Login')
@@ -7,6 +8,7 @@ const RecruiterLogin = () => {
   const [password,setPassword] = useState('')
   const [email,setEmail] = useState('')
   const [image,setImage] =useState(false)
+  const {setShowRecruiterLogin} = useContext(AppContext)
 
   const [isTextDataSubmitted,setIsTextDataSubmitted] = useState(false)
   const onSubmitHandler = async (e) =>{
@@ -16,6 +18,13 @@ const RecruiterLogin = () => {
         
     }
   }
+  useEffect(() => {
+    document.body.style.overflow ='hidden'
+    return () => {
+        document.body.style.overflow = 'unset'
+    }
+}, []);
+
 
   useEffect(() => {
     console.log("State changed:", state);
@@ -28,8 +37,15 @@ const RecruiterLogin = () => {
             <p className='text-sm'>
                {state ==='Login' ? 'Welcome please Log in' : 'Welcome please sign up '}</p>
             {
-                state === 'Sign up' && isTextDataSubmitted ? 
+                state === 'Sign Up' && isTextDataSubmitted ? 
             <>
+                <div className='flex items-center gap-4 my-10'>
+                    <label htmlFor="image">
+                        <img className='w-16 rounded-full' src={image ? URL.createObjectURL(image) : assets.upload_area} alt="" />
+                        <input onChange={e=>setImage(e.target.files[0])} type="file" id='image' hidden />
+                    </label>
+                    <p>Upload Company <br/> Logo</p>
+                </div>
             
             </> :
             <>
@@ -57,9 +73,10 @@ const RecruiterLogin = () => {
             </button>
 
             {
-                state === 'Login' ?<p className='mt-5 text-center'>Don't have an Account? <span className='text-blue-600 cursor-pointer' onClick={() => setState("Sign up")}>Sign up</span></p> :
+                state === 'Login' ?<p className='mt-5 text-center'>Don't have an Account? <span className='text-blue-600 cursor-pointer' onClick={() => setState("Sign Up")}>Sign up</span></p> :
                  <p className='mt-5 text-center'>Already have an Account ?<span className='text-blue-600 cursor-pointer' onClick={() => setState("Login")}>Log in</span></p>
             }
+             <img  className='absolute top-5 right-5 cursor-pointer' onClick={() => setShowRecruiterLogin(false)} src={assets.cross_icon} alt="" />
             
             
         </form>

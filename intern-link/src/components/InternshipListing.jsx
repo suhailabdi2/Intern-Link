@@ -3,7 +3,7 @@ import { AppContext } from '../context/AppContext'
 import { assets,  JobCategories, JobLocations } from '../assets/assets'
 import InternshipCard from './InternshipCard'
 
-const JobListing = () => {
+const InternshipListing = () => {
     const {isSearched,searchFilter, setSearchFilter, internships} = useContext(AppContext)
     const [showFilter , setShowFilter] = useState(true)
     const [currentPage, setCurrentPage] = useState(1)
@@ -141,4 +141,4 @@ const JobListing = () => {
   )
 }
 
-export default JobListing
+export default InternshipListing
