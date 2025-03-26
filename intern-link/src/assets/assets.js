@@ -74,7 +74,7 @@ export const assets = {
     new_logo
 }
 
-export const JobCategories = [
+export const InternCategories = [
     "Programming",
     "Data Science",
     "Finance",
@@ -84,7 +84,7 @@ export const JobCategories = [
     "Cybersecurity",
 ]
 
-export const JobLocations = [
+export const InternLocations = [
     "Nairobi",
     "Mombasa",
     "Eldoret",
@@ -147,13 +147,13 @@ export const internshipsApplied = [
 ];
 
 export const viewApplicationsPageData = [
-    { _id: 1, name: "Richard Sanford", jobTitle: "Full Stack Developer", location: "Kisumu", imgSrc: profile_img },
-    { _id: 2, name: "Enrique Murphy", jobTitle: "Data Scientist", location: "San Francisco", imgSrc: profile_img },
-    { _id: 3, name: "Alison Powell", jobTitle: "Marketing Manager", location: "London", imgSrc: profile_img },
-    { _id: 4, name: "Richard Sanford", jobTitle: "UI/UX Designer", location: "Dubai", imgSrc: profile_img },
-    { _id: 5, name: "Enrique Murphy", jobTitle: "Full Stack Developer", location: "Eldoret", imgSrc: profile_img },
-    { _id: 6, name: "Alison Powell", jobTitle: "Data Scientist", location: "New Delhi", imgSrc: profile_img },
-    { _id: 7, name: "Richard Sanford", jobTitle: "Marketing Manager", location: "Naivasha", imgSrc: profile_img },
+    { _id: 1, name: "Richard Sanford", internshipTitle: "Full Stack Developer", location: "Kisumu", imgSrc: profile_img },
+    { _id: 2, name: "Enrique Murphy", internshipTitle: "Data Scientist", location: "San Francisco", imgSrc: profile_img },
+    { _id: 3, name: "Alison Powell", internshipTitle: "Marketing Manager", location: "London", imgSrc: profile_img },
+    { _id: 4, name: "Richard Sanford", internshipTitle: "UI/UX Designer", location: "Dubai", imgSrc: profile_img },
+    { _id: 5, name: "Enrique Murphy", internshipTitle: "Full Stack Developer", location: "Eldoret", imgSrc: profile_img },
+    { _id: 6, name: "Alison Powell", internshipTitle: "Data Scientist", location: "New Delhi", imgSrc: profile_img },
+    { _id: 7, name: "Richard Sanford", internshipTitle: "Marketing Manager", location: "Naivasha", imgSrc: profile_img },
 ];
 
 export const internshipData = [

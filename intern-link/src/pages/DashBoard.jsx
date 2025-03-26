@@ -26,7 +26,7 @@ const DashBoard = () => {
                 </div>
             </div>
         </div>
-        <div className='flex-items-start'>
+        <div className='flex items-start'>
             {/* Sidebar */}
             <div className='inline-block min-h-screen border-r-2 '>
                 <ul className='flex flex-col items-start pt-5 text-gray-800'>

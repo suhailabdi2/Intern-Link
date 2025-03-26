@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../context/AppContext'
-import { assets,  JobCategories, JobLocations } from '../assets/assets'
+import { assets,  InternCategories, InternLocations } from '../assets/assets'
 import InternshipCard from './InternshipCard'
 
 const InternshipListing = () => {
@@ -73,7 +73,7 @@ const InternshipListing = () => {
                         <h4 className='font-medium text-lg py-4'>Search by Category</h4>
                         <ul className ='space-y-4 text-gray-600'>
                         {
-                            JobCategories.map((category,index)=>(
+                            InternCategories.map((category,index)=>(
                                 <li className='flex gap-3 items-center' key={index}>
                                     <input 
                                     className='scale-125' 
@@ -91,7 +91,7 @@ const InternshipListing = () => {
                         <h4 className='font-medium text-lg py-4 pt-14'>Search by Location</h4>
                         <ul className ='space-y-4 text-gray-600'>
                         {
-                            JobLocations.map((location,index)=>(
+                            InternLocations.map((location,index)=>(
                                 <li className='flex gap-3 items-center' key={index}>
                                     <input className='scale-125' type="checkbox"
                                     onChange={()=> handleLocationChange(location)} 
