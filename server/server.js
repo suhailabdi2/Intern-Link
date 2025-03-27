@@ -21,7 +21,7 @@ Sentry.setupExpressErrorHandler(app)
 app.get("/debug-sentry", function mainHandler(req, res) {
     throw new Error("My first Sentry error!");
   });
-  app.post ("/webhooks",clerkWebhook)
+app.post ("/webhooks",clerkWebhook)
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
 })
