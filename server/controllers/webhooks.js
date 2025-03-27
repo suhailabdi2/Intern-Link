@@ -28,6 +28,7 @@ export const clerkWebhook = async (req, res) => {
                     resume: ''
                 }
                 await User.create(userData)
+                console.log("User Created")
                 res.json({})
                 break;
 
