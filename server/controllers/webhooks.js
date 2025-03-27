@@ -6,7 +6,7 @@ export const clerkWebhook = async (req, res) => {
     try{
 
         //create a new webhook instance
-        const webhook = new Webhook(process.env.CLERK_WEBHOOK_SCRET);   
+        const webhook = new Webhook(process.env.CLERK_WEBHOOK_SECRET);   
         //verify the webhook signature
         await webhook.verify(JSON.stringify(req.body),{
             "svix-id": req.headers["svix-id"],
