@@ -54,7 +54,7 @@ export const loginCompany = async (req,res) => {
     const {email,password} = req.body
     try {
         const company = await Company.findOne({email})
-        if (bcrypt.compare(password,company.password)) {
+        if (await bcrypt.compare(password,company.password)) {
             res.json({
                 success:true,
                 company:{
@@ -100,7 +100,7 @@ export const getCompanyData = async (req,res) =>{
 }
 //post a new job
 export const postInternship = async (req,res) =>{
-    const {title,location,description,category,year} = req.body
+    const {title,location,description,category} = req.body
     const companyId = req.company._id
     try {
         const newInternship = new internship({
@@ -110,8 +110,6 @@ export const postInternship = async (req,res) =>{
             companyId,
             date:Date.now(),
             category,
-            year,
-            
             
         })
         await newInternship.save()

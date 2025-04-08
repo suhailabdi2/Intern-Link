@@ -9,6 +9,7 @@ import companyRoutes from './routes/companyroutes.js'
 import connectCloudinary from './config/cloudinary.js'
 import internshipRoutes from './routes/internshipRoutes.js'
 import userRoutes from './routes/userRoutes.js'
+import { clerkMiddleware } from '@clerk/express'
 const app = express()
 
 //database
@@ -16,7 +17,7 @@ await connectDB()
 await connectCloudinary()
 // middleware
 app.use(cors())
-
+app.use(clerkMiddleware())
 app.use(express.json())
 //Routes
 app.get('/', (req,res) =>  res.send("API working"))

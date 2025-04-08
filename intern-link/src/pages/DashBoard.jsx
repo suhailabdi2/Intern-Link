@@ -1,11 +1,13 @@
-import React, { use } from 'react'
+import React, { use, useContext } from 'react'
 import NavBar from '../components/NavBar'
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { assets } from '../assets/assets'
+import { AppContext } from '../context/AppContext'
 
 const DashBoard = () => {
 
     const navigate = useNavigate()
+    const {companyData} = useContext(AppContext)
   return (
     <div className='min-h-screen'>
         
@@ -13,17 +15,21 @@ const DashBoard = () => {
         <div className=' shadow py-4'>
             <div className='px-5 flex justify-between items-center'>
                 <img onClick={e => navigate('/')} className='w-16 h-24 max-sm:w-32  cursor-pointer' src={assets.new_logo} alt="" />
-                <div className='flex items-center gap-3 '>
-                    <p  className='max-sm:hidden'>Welcome InternLink</p >
+                {companyData &&(
+                     <div className='flex items-center gap-3 '>
+                    
+                    <p  className='max-sm:hidden'>Welcome {companyData.name}</p >
                     <div className='relative group'>
-                        <img className='w-8 border rounded-full' src={assets.company_icon} alt="" />
+                        <img className='w-8 border rounded-full' src={companyData.img} alt="" />
                         <div className='absolute hidden group-hover:block top-0 right-0 z-10 text-black roundedd pt-12 '>
                             <ul className='list-none m-0 p -2 bg:white rounded-md border text-sm'>
                                 <li className='py-1 px-2 cursor-pointer pr-10'>Log Out</li>
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div>   
+                    )}
+                
             </div>
         </div>
         <div className='flex items-start'>

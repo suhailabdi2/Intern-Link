@@ -99,7 +99,8 @@ export const manageInternshipData = [
     { _id: 1, title: "Full Stack Developer", date: 1729102298497, location: "Kisumu", applicants: 20 },
     { _id: 2, title: "Data Scientist", date: 1729102298497, location: "San Francisco", applicants: 15 },
     { _id: 3, title: "Marketing Manager", date: 1729102298497, location: "London", applicants: 2 },
-    { _id: 4, title: "UI/UX Designer", date: 1729102298497, location: "Dubai", applicants: 25 }
+    { _id: 4, title: "UI/UX Designer", date: 1729102298497, location: "Dubai", applicants: 25 },
+    {_id:5, title:"Professor", date:1729102298497, location: "JAnuary", applicants: 55},
 ];
 
 // Sample data for Profile Page
@@ -154,6 +155,7 @@ export const viewApplicationsPageData = [
     { _id: 5, name: "Enrique Murphy", internshipTitle: "Full Stack Developer", location: "Eldoret", imgSrc: profile_img },
     { _id: 6, name: "Alison Powell", internshipTitle: "Data Scientist", location: "New Delhi", imgSrc: profile_img },
     { _id: 7, name: "Richard Sanford", internshipTitle: "Marketing Manager", location: "Naivasha", imgSrc: profile_img },
+    
 ];
 
 export const internshipData = [
@@ -847,7 +849,7 @@ export const internshipData = [
             <li>Good communication skills to articulate testing outcomes and challenges.</li>
         </ol>`,
         stipend: 123000,
-        date: 1729681667114,
+        date: 17296078667114,
         category: "Programming",
     },
     {
@@ -915,5 +917,38 @@ export const internshipData = [
         stipend: 102000,
         date: 1729681667114,
         category: "Programming",
-    }
+    },
+    {
+        _id: '4',
+        title: "DevOps Engineer",
+        location: "Nakuru",
+        level: "Senior Level",
+        companyId: {
+            "_id": "670e4d25ca9fda8f1bf359b9",
+            "name": "Slack",
+            "email": "slack@demo.com",
+            "image": company_icon,
+        },
+        description: `
+        <p>Enhance our deployment pipeline as a DevOps Engineer. This role will involve automating deployment processes, managing cloud infrastructure, and implementing best practices for security and performance. You will play a vital role in bridging the gap between development and operations, ensuring efficient workflows and high-quality releases.</p>
+        <h2><strong>Key Responsibilities</strong></h2>
+        <ol>
+            <li>Automate deployment processes using CI/CD tools to streamline development workflows.</li>
+            <li>Manage cloud infrastructure, ensuring optimal performance and scalability.</li>
+            <li>Implement security best practices to safeguard our systems.</li>
+            <li>Monitor application performance and troubleshoot issues proactively.</li>
+            <li>Collaborate with developers to improve system reliability and efficiency.</li>
+        </ol>
+        <h2><strong>Skills Required</strong></h2>
+        <ol>
+            <li>Experience with CI/CD tools (e.g., Jenkins, GitLab CI).</li>
+            <li>Strong knowledge of cloud platforms (e.g., AWS, Azure).</li>
+            <li>Proficiency in scripting languages (e.g., Bash, Python).</li>
+            <li>Familiarity with containerization technologies (e.g., Docker, Kubernetes).</li>
+            <li>Excellent troubleshooting and analytical skills.</li>
+        </ol>`,
+        stipend: 53000,
+        date: 1729681667114,
+        category: "Programming",
+    },
 ];
