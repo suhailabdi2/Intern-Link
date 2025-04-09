@@ -10,28 +10,50 @@ import connectCloudinary from './config/cloudinary.js'
 import internshipRoutes from './routes/internshipRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import { clerkMiddleware } from '@clerk/express'
+
 const app = express()
 
-//database
+// Initialize Sentry
+Sentry.init({
+  dsn: process.env.SENTRY_DSN,
+  // Remove integrations for now to fix the error
+  tracesSampleRate: 1.0,
+});
+
+// Connect to database and cloudinary
 await connectDB()
 await connectCloudinary()
-// middleware
+
+// Middleware
 app.use(cors())
+app.use(express.json({ verify: (req, res, buf) => { req.rawBody = buf } }))
 app.use(clerkMiddleware())
-app.use(express.json())
-//Routes
-app.get('/', (req,res) =>  res.send("API working"))
-const PORT = process.env.PORT || 5000
-Sentry.setupExpressErrorHandler(app)
-app.get("/debug-sentry", function mainHandler(req, res) {
-    throw new Error("My first Sentry error!");
+
+// Routes
+app.get('/', (req, res) => res.send("API working"))
+
+// Clerk webhook route - must be before other routes
+app.post("/webhooks", express.raw({ type: 'application/json' }), clerkWebhook)
+
+// API routes
+app.use('/api/company', companyRoutes)
+app.use('/api/internships', internshipRoutes)
+app.use('/api/users', userRoutes)
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error('Error:', err);
+  Sentry.captureException(err);
+  res.status(500).json({
+    success: false,
+    message: "Internal server error",
+    error: process.env.NODE_ENV === 'development' ? err.message : undefined
   });
-app.post ("/webhooks",clerkWebhook)
-app.use('/api/company',companyRoutes)
-app.use('/api/internships',internshipRoutes)
-app.use('/api/users',userRoutes)
+});
+
+const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`)
+  console.log(`Server is running on port ${PORT}`)
 })
 
 

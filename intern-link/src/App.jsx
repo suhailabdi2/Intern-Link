@@ -12,6 +12,7 @@ import ViewApplications from './pages/ViewApplications'
 import Quill from 'quill'
 import 'quill/dist/quill.snow.css';
 import { ToastContainer, toast } from 'react-toastify';
+import { SignIn, SignUp } from "@clerk/clerk-react";
 
 const App = () => {
   const {showRecruiterLogin,companyToken} = useContext(AppContext)
@@ -31,6 +32,9 @@ const App = () => {
         </> : null}
           
         </Route>
+        {/* Clerk Authentication Routes */}
+        <Route path="/sign-in/*" element={<SignIn routing="path" path="/sign-in" />} />
+        <Route path="/sign-up/*" element={<SignUp routing="path" path="/sign-up" />} />
       </Routes>
       
       

@@ -6,6 +6,8 @@ import NavBar from '../components/NavBar'
 import { assets } from '../assets/assets'
 import moment from 'moment'
 import InternshipCard from '../components/InternshipCard'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 
 const ApplyIntern = () => {
   const {id} = useParams()

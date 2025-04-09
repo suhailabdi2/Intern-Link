@@ -4,6 +4,7 @@ import { v2 as cloudinary } from "cloudinary";
 import generateToken from "../utils/generateToken.js";
 import internship from "../models/Internship.js";
 import { now, trusted } from "mongoose";
+import internshipApplication from "../models/internshipApplication.js";
 
 
 // REgister new Company
@@ -125,13 +126,34 @@ export const postInternship = async (req,res) =>{
 }
  // get company job applicants
  export const getCompanyApplicants = async (req,res) => {
-    
+    try {
+        const companyId = req.company._id
+        
+        // Find all applications for this company's internships
+        const applications = await internshipApplication.find({ companyId })
+            .populate('userId', 'name email image')
+            .populate('internshipId', 'title location')
+            .sort({ date: -1 }) // Sort by date, newest first
+        
+        console.log(`Found ${applications.length} applications for company ${companyId}`)
+        
+        res.json({
+            success: true,
+            applications: applications || []
+        })
+    } catch (error) {
+        console.error("Error in getCompanyApplicants:", error)
+        res.status(500).json({
+            success: false,
+            message: error.message || "Failed to fetch applications"
+        })
+    }
  }
  // get company posted internships
  export const getCompanyPostedInternships = async (req,res)=>{
     try {
         const companyId = req.company._id
-        const internships = await internship.findById(companyId)
+        const internships = await internship.find({ companyId })
 //ToDo add number of applicants
         res.json({
             success:true,
@@ -146,7 +168,54 @@ export const postInternship = async (req,res) =>{
  }
 //change internship application status
 export const ChangeInternshipApplicationStatus = async (req,res)=>{
-
+    try {
+        const { applicationId, status } = req.body
+        const companyId = req.company._id
+        
+        console.log(`Changing status for application ${applicationId} to ${status}`)
+        
+        if (!applicationId || !status) {
+            return res.status(400).json({
+                success: false,
+                message: "Missing applicationId or status"
+            })
+        }
+        
+        // Find the application
+        const application = await internshipApplication.findById(applicationId)
+        
+        if (!application) {
+            return res.status(404).json({
+                success: false,
+                message: "Application not found"
+            })
+        }
+        
+        // Verify that this application belongs to the company
+        if (application.companyId.toString() !== companyId.toString()) {
+            return res.status(403).json({
+                success: false,
+                message: "Unauthorized to update this application"
+            })
+        }
+        
+        // Update the status
+        application.status = status
+        await application.save()
+        
+        console.log(`Application ${applicationId} status updated to ${status}`)
+        
+        res.json({
+            success: true,
+            message: `Application ${status.toLowerCase()} successfully`
+        })
+    } catch (error) {
+        console.error("Error in ChangeInternshipApplicationStatus:", error)
+        res.status(500).json({
+            success: false,
+            message: error.message || "Failed to update application status"
+        })
+    }
 }
 export const ChangeVisibility = async (req,res) =>{
     try {
