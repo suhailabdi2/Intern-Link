@@ -2,7 +2,8 @@ import internshipApplication from "../models/internshipApplication.js"
 import internship from "../models/Internship.js"
 import User from "../models/user.js"
 import {v2 as cloudinary} from 'cloudinary'
-
+import bcrypt from 'bcrypt'
+import generateToken from '../utils/generateToken.js'
 
 //get user data
 export const getUserData = async (req,res) =>{
@@ -64,24 +65,107 @@ export const getUserInternshipApplications = async (req,res) =>{
 }
 export const updateUserResume = async (req,res) =>{
     try{
-        const userId = req.auth.userId
-        const resumeFile = req.resumeFile
-        const userData = await User.findById(userId)
+        const userData = req.user
+        const resumeFile = req.file
 
         if (resumeFile) {
-            const resumeUpload = await cloudinary.uploader.upload(resumeFile)
+            const resumeUpload = await cloudinary.uploader.upload(resumeFile.path, {
+                resource_type: "raw",
+                format: "pdf"
+            })
             userData.resume = resumeUpload.secure_url
-        }
-        await userData.save()
+            await userData.save()
 
-        return res.json({
-            success:true, message:"REsume updated"
-        })
+            return res.json({
+                success: true,
+                message: "Resume updated successfully",
+                resumeUrl: resumeUpload.secure_url
+            })
+        } else {
+            return res.json({
+                success: false,
+                message: "No resume file provided"
+            })
+        }
 
     }catch(error){
-        res.json({
-            message:false, 
+        console.error("Resume update error:", error)
+        return res.json({
+            success: false,
+            message: error.message || "Error updating resume"
         })
-
     }
 }
+
+// Register new user
+export const registerUser = async (req, res) => {
+    const { name, email, password } = req.body;
+    const imageFile = req.file;
+
+    if (!name || !email || !password || !imageFile) {
+        return res.json({ success: false, message: "Missing Details" });
+    }
+
+    try {
+        const userExists = await User.findOne({ email });
+        if (userExists) {
+            return res.json({ success: false, message: "User already exists" });
+        }
+
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        const imageUpload = await cloudinary.uploader.upload(imageFile.path);
+        
+        const user = await User.create({
+            name,
+            email,
+            password: hashedPassword,
+            image: imageUpload.secure_url,
+            resume: ''
+        });
+
+        res.json({
+            success: true,
+            user: {
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                image: user.image
+            },
+            token: generateToken(user._id)
+        });
+    } catch (error) {
+        res.json({ success: false, message: error.message });
+    }
+};
+
+// Login user
+export const loginUser = async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.json({ success: false, message: "User not found" });
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.json({ success: false, message: "Invalid password" });
+        }
+
+        res.json({
+            success: true,
+            user: {
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                image: user.image
+            },
+            token: generateToken(user._id)
+        });
+    } catch (error) {
+        res.json({ success: false, message: error.message });
+    }
+};

@@ -24,7 +24,7 @@ export const getInternshipById = async (req,res) =>{
         if(!internship){
             return res.json({
                 success:"false",
-                message:"Job not found"
+                message:"Internship not found"
             })
         }
     } catch (error) {

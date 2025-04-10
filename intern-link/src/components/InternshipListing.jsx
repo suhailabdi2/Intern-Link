@@ -4,7 +4,7 @@ import { assets,  InternCategories, InternLocations } from '../assets/assets'
 import InternshipCard from './InternshipCard'
 
 const InternshipListing = () => {
-    const {isSearched,searchFilter, setSearchFilter, internships} = useContext(AppContext)
+    const {isSearched, searchFilter, setSearchFilter, internships, loading} = useContext(AppContext)
     const [showFilter , setShowFilter] = useState(true)
     const [currentPage, setCurrentPage] = useState(1)
     const [selectedCategories, setSelectedCategories] = useState([])
@@ -115,13 +115,25 @@ const InternshipListing = () => {
         <section className='w-full lg:w-3/4 text-gray-800 max-lg:px-4'>
             <h3 className='font-medium text-3xl py-2' id='intern-list'>Latest Internships</h3>
             <p className='mb-8'>Get your desired internships</p>
-            <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 '>
-                {filteredInternships.slice((currentPage-1)*6,currentPage*6).map((internship,index) =>(
-                    <InternshipCard key={index} internship={internship}/>
-                ))}
-            </div> 
+            
+            {loading ? (
+                <div className="flex justify-center items-center py-10">
+                    <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600"></div>
+                </div>
+            ) : filteredInternships.length > 0 ? (
+                <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 '>
+                    {filteredInternships.slice((currentPage-1)*6,currentPage*6).map((internship,index) =>(
+                        <InternshipCard key={index} internship={internship}/>
+                    ))}
+                </div>
+            ) : (
+                <div className="text-center py-10 text-gray-500">
+                    <p>No internships found matching your criteria.</p>
+                </div>
+            )}
+            
             {/*Pagination */}
-            {filteredInternships.length > 0 &&(
+            {!loading && filteredInternships.length > 0 &&(
             <div className='flex items-center justify-center space-x-2 mt-10'>
                 <a href="#intern-list"><img onClick={()=> setCurrentPage(Math.max(currentPage-1))} src={assets.left_arrow_icon} alt="" /></a>
                 {Array.from({length:Math.ceil(filteredInternships.length/6)}).map((__,index)=>(

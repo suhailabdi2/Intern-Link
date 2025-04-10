@@ -12,7 +12,7 @@ const ManageInternships = () => {
   const [loading, setLoading] = useState(true)
   const { backendUrl, companyToken } = useContext(AppContext)
 
-  // Function to fetch company job application data
+  // Function to fetch company internship application data
   const fetchCompanyInternships = async () => {
     try {
       setLoading(true)
@@ -125,7 +125,7 @@ const ManageInternships = () => {
       </div>
       <div className='mt-4 justify-between flex'>
         <button onClick={() => navigate('/dashboard/add-internship')} className='bg-black text-white rounded py-2 px-4'>
-          Add New Job
+          Add New Internship
         </button>
       </div>
     </div>

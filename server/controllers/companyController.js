@@ -99,7 +99,7 @@ export const getCompanyData = async (req,res) =>{
     
 
 }
-//post a new job
+//post a new internship
 export const postInternship = async (req,res) =>{
     const {title,location,description,category} = req.body
     const companyId = req.company._id
@@ -124,8 +124,8 @@ export const postInternship = async (req,res) =>{
     
 
 }
- // get company job applicants
- export const getCompanyApplicants = async (req,res) => {
+// get company internship applicants
+export const getCompanyApplicants = async (req,res) => {
     try {
         const companyId = req.company._id
         
@@ -149,8 +149,8 @@ export const postInternship = async (req,res) =>{
         })
     }
  }
- // get company posted internships
- export const getCompanyPostedInternships = async (req,res)=>{
+// get company posted internships
+export const getCompanyPostedInternships = async (req,res)=>{
     try {
         const companyId = req.company._id
         const internships = await internship.find({ companyId })
