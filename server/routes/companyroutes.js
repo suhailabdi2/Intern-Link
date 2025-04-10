@@ -21,8 +21,8 @@ router.get('/applicants',protectComapny,getCompanyApplicants)
 //get company internship list
 router.get('/list-internship', protectComapny ,getCompanyPostedInternships)
 //change applicants status
-router.post('/change-status', ChangeInternshipApplicationStatus)
+router.post('/change-status', protectComapny, ChangeInternshipApplicationStatus)
 //chaneg app visibility
-router.post('change-visibility', protectComapny,ChangeVisibility)
+router.post('/change-visibility', protectComapny, ChangeVisibility)
 
 export default router

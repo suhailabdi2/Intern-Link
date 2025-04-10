@@ -17,7 +17,13 @@ const NavBar = () => {
     })
     const [isTextDataSubmitted, setIsTextDataSubmitted] = useState(false)
 
-    const { setShowRecruiterLogin, backendUrl, setUserData, setUserToken, userData, userToken } = useContext(AppContext)
+    const { 
+        setShowRecruiterLogin, 
+        backendUrl, 
+        userData, 
+        loginUser, 
+        logoutUser 
+    } = useContext(AppContext)
 
     const handleInputChange = (e) => {
         const { name, value } = e.target
@@ -49,9 +55,7 @@ const NavBar = () => {
                 })
 
                 if (data.success) {
-                    setUserData(data.user)
-                    setUserToken(data.token)
-                    localStorage.setItem('userToken', data.token)
+                    loginUser(data.user, data.token)
                     setShowAuthForm(false)
                     navigate('/intern-applications')
                     toast.success('Login successful!')
@@ -72,9 +76,7 @@ const NavBar = () => {
                 const { data } = await axios.post(`${backendUrl}/api/users/register`, formDataToSend)
 
                 if (data.success) {
-                    setUserData(data.user)
-                    setUserToken(data.token)
-                    localStorage.setItem('userToken', data.token)
+                    loginUser(data.user, data.token)
                     setShowAuthForm(false)
                     navigate('/intern-applications')
                     toast.success('Registration successful!')
@@ -88,9 +90,7 @@ const NavBar = () => {
     }
 
     const handleLogout = () => {
-        setUserData(null)
-        setUserToken(null)
-        localStorage.removeItem('userToken')
+        logoutUser()
         toast.success('Logged out successfully')
         navigate('/')
     }

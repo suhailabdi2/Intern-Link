@@ -219,17 +219,47 @@ export const ChangeInternshipApplicationStatus = async (req,res)=>{
 }
 export const ChangeVisibility = async (req,res) =>{
     try {
-        const {id} = req.body
+        const { internshipId } = req.body
         const companyId = req.company._id
-        const internship = await internship.findById(id)
-        if (companyId.toString() === internship.companyId.toString()) {
-            internship.visible = !internship.visible
-            
+        
+        console.log("ChangeVisibility request with internshipId:", internshipId);
+        
+        if (!internshipId) {
+            return res.json({
+                success: false,
+                message: "Internship ID is required"
+            });
         }
-        await internship.save()
-        res.json({success:true,internships})
+        
+        const internshipData = await internship.findById(internshipId)
+        
+        if (!internshipData) {
+            return res.json({
+                success: false,
+                message: "Internship not found"
+            });
+        }
+        
+        if (companyId.toString() === internshipData.companyId.toString()) {
+            internshipData.visible = !internshipData.visible
+            await internshipData.save()
+            
+            return res.json({
+                success: true,
+                message: `Internship visibility changed to ${internshipData.visible ? 'visible' : 'hidden'}`,
+                internship: internshipData
+            });
+        } else {
+            return res.json({
+                success: false,
+                message: "Unauthorized to change this internship's visibility"
+            });
+        }
     } catch (error) {
-        res.json({success:false,message:error
-        })
+        console.error("Error in ChangeVisibility:", error);
+        return res.json({
+            success: false,
+            message: error.message || "Failed to change internship visibility"
+        });
     }
 }

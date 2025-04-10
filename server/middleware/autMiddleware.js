@@ -43,6 +43,7 @@ export const protectUser = async (req, res, next) => {
         }
 
         req.user = user
+        req.auth = { userId: user._id }
         next()
     } catch (error) {
         return res.json({

@@ -53,7 +53,7 @@ export const AppContextProvider = (props) => {
                 toast.error(data.message)
             }
         } catch (error) {
-            toast.error(error.message)
+            console.error('Error fetching company data:', error)
         }
     }
 
@@ -65,15 +65,26 @@ export const AppContextProvider = (props) => {
             if (data.success) {
                 setUserData(data.user)
             } else {
-                toast.error(data.message)
+                console.error('Failed to fetch user data:', data.message)
+                // If token is invalid or expired, clear the token
+                if (data.message === 'Invalid token' || data.message === 'User not found') {
+                    setUserToken(null)
+                    localStorage.removeItem('userToken')
+                }
             }
         } catch (error) {
-            toast.error(error.message)
+            console.error('Error fetching user data:', error)
+            // If the request fails due to auth issues, clear the token
+            if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+                setUserToken(null)
+                localStorage.removeItem('userToken')
+            }
         }
     }
 
     useEffect(() => {
         fetchinternships()
+        // Retrieve tokens from localStorage on component mount
         const storedCompanyToken = localStorage.getItem('companyToken')
         const storedUserToken = localStorage.getItem('userToken')
         
@@ -94,8 +105,24 @@ export const AppContextProvider = (props) => {
     useEffect(() => {
         if (userToken) {
             fetchUserData()
+        } else {
+            // Clear user data if there's no token
+            setUserData(null)
         }
     }, [userToken])
+
+    // Check user login status and set user data when needed
+    const loginUser = (user, token) => {
+        setUserData(user)
+        setUserToken(token)
+        localStorage.setItem('userToken', token)
+    }
+
+    const logoutUser = () => {
+        setUserData(null)
+        setUserToken(null)
+        localStorage.removeItem('userToken')
+    }
 
     const value = {
         searchFilter, setSearchFilter,
@@ -107,7 +134,9 @@ export const AppContextProvider = (props) => {
         userToken, setUserToken,
         userData, setUserData,
         backendUrl,
-        loading
+        loading,
+        loginUser,
+        logoutUser
     };
 
     return (

@@ -17,18 +17,23 @@ export const getInternships = async (req, res) =>{
 export const getInternshipById = async (req,res) =>{
     try {
         const {id} = req.params
-        const internship = await internship.findById(id).populate({
+        const internshipData = await internship.findById(id).populate({
             path :'companyId',
             select:"-password"
         })
-        if(!internship){
+        if(!internshipData){
             return res.json({
-                success:"false",
+                success:false,
                 message:"Internship not found"
             })
         }
+        
+        return res.json({
+            success: true,
+            internship: internshipData
+        })
     } catch (error) {
-        res.json({success:"false",message:error})
+        res.json({success:false, message:error.message})
         
     }
 }

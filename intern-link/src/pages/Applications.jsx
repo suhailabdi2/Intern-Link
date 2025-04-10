@@ -5,8 +5,10 @@ import moment from 'moment'
 import axios from 'axios'
 import { AppContext } from '../context/AppContext'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 const Applications = () => {
+  const navigate = useNavigate()
   const [isEdit, setisEdit] = useState(false)
   const [resume, setResume] = useState(null)
   const [resumePreview, setResumePreview] = useState(null)
@@ -297,7 +299,7 @@ const Applications = () => {
           <div className="text-center py-10 text-gray-500">
             <p>You haven't applied to any internships yet.</p>
             <button 
-              onClick={() => window.location.href = '/'} 
+              onClick={() => navigate('/')} 
               className="mt-4 bg-blue-600 text-white px-6 py-2 rounded-full"
             >
               Browse Internships
